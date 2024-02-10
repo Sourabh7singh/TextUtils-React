@@ -1,24 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Alert from './components/Alert';
+// import About from './components/About';
+import Navbar from './components/Navbar';
+import TextForm from './components/TextForm';
+import React, { useContext } from 'react';
+import {Datacontext} from "./components/Datacontext"
 function App() {
+  const {mode,togglemode,alert,showalert} = useContext(Datacontext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <Navbar title="Text-Helper" mode={mode} toggle={togglemode}/>
+    <Alert alert={alert}/>
+    <div className="container my-3">
+    <TextForm showalert={showalert} heading="Enter the text to analyze below" mode={mode} toggle={togglemode}/>
     </div>
+    </>
   );
 }
 
