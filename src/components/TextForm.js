@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 
 export default function TextForm(props) {
+    const [text,setText]=useState("");
     const handleupclick=()=>{
         let newtext=text.toUpperCase();
         setText(newtext);
@@ -23,7 +24,10 @@ export default function TextForm(props) {
         document.getSelection().removeAllRanges();
         props.showalert("Text copied to clipboard","success");
     }
-    const [text,setText]=useState("");
+    const handlelsentence=()=>{
+        let newtext = text[0].toUpperCase() + text.substring(1)
+        setText(newtext);
+    }
     return (
         <>
         <div className="container">
@@ -33,6 +37,7 @@ export default function TextForm(props) {
         </div>
         <button disabled={text.split(" ").filter((element)=>{return element.length!==0}).length===0} className="btn btn-primary mx-1 my-1" onClick={handleupclick}>Convert to Upper case</button>
         <button disabled={text.split(" ").filter((element)=>{return element.length!==0}).length===0} className="btn btn-primary mx-1 my-1" onClick={handlelowclick}>Convert to Lower case</button>
+        <button disabled={text.split(" ").filter((element)=>{return element.length!==0}).length===0} className="btn btn-primary mx-1 my-1" onClick={handlelsentence}>Convert to Sentence case</button>
         <button disabled={text.split(" ").filter((element)=>{return element.length!==0}).length===0} className="btn btn-primary mx-1 my-1" onClick={handleclearclick}>Clear Text</button>
         <button disabled={text.split(" ").filter((element)=>{return element.length!==0}).length===0} className="btn btn-primary mx-1 my-1" onClick={handlecopy}>Copy Text</button>
         </div>
